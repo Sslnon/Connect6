@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * A generic Connect6 Player.
- * 
+ * test
  * @author
  */
 public abstract class Player implements Comparable<Player>, Cloneable {
