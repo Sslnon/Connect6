@@ -93,6 +93,7 @@ public class GameEvent {
      * 多线程模拟赛事的所有比赛
      * @param games
      */
+
     public void runMultiThread(ArrayList<Game> games) {
         ArrayList<Thread> gameThreads = new ArrayList<>();
         for (Game game : games) {

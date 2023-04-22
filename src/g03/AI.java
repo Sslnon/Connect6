@@ -20,16 +20,25 @@ public class AI extends core.player.AI {
 
         this.board.makeMove(opponentMove);
         Random rand = new Random();
-        while (true) {
-            int index1 = rand.nextInt(169);
-            int index2 = rand.nextInt(169);
-            if (index1 != index2 && this.board.get(index1) == PieceColor.EMPTY && this.board.get(index2) == PieceColor.EMPTY) {
-                Move move = new Move(index1, index2);
-                this.board.makeMove(move);
-                steps++;
-                return move;
-            }
+        int index1 = rand.nextInt(169);
+        while (this.board.get(index1) != PieceColor.EMPTY) {
+            index1  = rand.nextInt(169);
         }
+        int index2=-1;
+//        while (true) {
+//            int index1 = rand.nextInt(169);
+//            int index2 = rand.nextInt(169);
+//            if (index1 != index2 && this.board.get(index1) == PieceColor.EMPTY && this.board.get(index2) == PieceColor.EMPTY) {
+//                Move move = new Move(index1, index2);
+//                this.board.makeMove(move);
+//                steps++;
+//                return move;
+//            }
+//        }
+        Move move = new Move(index1, index2);
+        this.board.makeMove(move);
+        steps++;
+        return move;
     }
 
     public String name() {

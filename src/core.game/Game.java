@@ -42,6 +42,7 @@ public class Game extends Observable implements Observer, Runnable {
             GameUI ui = UiFactory.getUi("GUI", this.referee.gameTitle());
             addObserver((Observer) ui);
         }
+        // Start the game loop
         while (true) {
             Move move;
             if (Configuration.GUI) {
@@ -51,28 +52,34 @@ public class Game extends Observable implements Observer, Runnable {
                     e.printStackTrace();
                 }
             }
+            // Get the current player's turn
             Player currPlayer = this.referee.whoseMove();
+            // If the game is over, end the game and break out of the loop
             if (this.referee.gameOver()) {
                 this.referee.endingGame("F", currPlayer, currMove);
                 break;
             }
+            // If we have reached the maximum number of steps, end the game and break out of the loop
             if (steps > Configuration.MAX_STEP) {
                 this.referee.endingGame("M", currPlayer, currMove);
                 break;
             }
+            // Start the current player's timer and try to get their move
             currPlayer.startTimer();
             try {
                 move = currPlayer.findMove(currMove);
             } catch (Exception ex) {
+                // If there is an error, end the game and print the stack trace
                 this.referee.endingGame("E", currPlayer, null);
                 System.out.println(Arrays.toString((Object[]) ex.getStackTrace()));
                 break;
             }
+            // Stop the current player's timer and check if the game has been interrupted
             currPlayer.stopTimer();
             if (Thread.interrupted()) {
                 break;
             }
-
+            // If the move is legal, notify the observers and record the move
             if (this.referee.legalMove(move)) {
                 setChanged();
                 notifyObservers(move);
@@ -81,6 +88,7 @@ public class Game extends Observable implements Observer, Runnable {
                 break;
 
             }
+            // record the move and increment the step counter
             this.referee.recordMove(move);
             steps++;
             currMove = move;

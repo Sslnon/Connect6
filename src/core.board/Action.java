@@ -4,7 +4,7 @@
 package core.board;
 
 import static core.game.Move.index;
-import static core.game.Move.validSquare;
+
 
 /**
  * @author ÖìÁÕ
@@ -26,7 +26,8 @@ public class Action {
 	}
 	//Âä×Ó
     protected void set() {
-    	assert validSquare(k);
+    	//assert validSquare(k);
+		assert 'A' <= k && k <= 'A' + 18 ;
         _board[k] = _whoseMove;
     }
     //Ìá×Ó
