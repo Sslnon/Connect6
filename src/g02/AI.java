@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class AI extends core.player.AI {
     private int steps = 0;
-
+    //×ß·¨1
     @Override
     public Move findMove(Move opponentMove) {
         if (opponentMove == null) {
