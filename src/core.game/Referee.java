@@ -23,7 +23,7 @@ public class Referee {
 
 //谁先手
     public Player whoseMove() {
-        return (this._board.whoseMove() == PieceColor.BLACK) ? this._white : this._black;
+        return (this._board.whoseMove() == PieceColor.WHITE) ? this._white : this._black;
     }
 
 
