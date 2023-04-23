@@ -27,8 +27,8 @@ public class AI extends core.player.AI {
 
             if (consecutiveMisses >= 10) {
                 // If 10 consecutive rolls fail to find an empty space, select from the entire board
-                index1 = 19;
-                index2 = 19;
+                index1 = rand.nextInt(361);
+                index2 = rand.nextInt(361);
             } else {
                 // Check the center region for empty spaces
                 int center = 10;
@@ -39,13 +39,13 @@ public class AI extends core.player.AI {
                 boolean found = false;
 
                 while (!found && consecutiveMisses < 10) {
-                    index1 = rand.nextInt(rowEnd - rowStart + 1) + rowStart;
-                    index2 = rand.nextInt(colEnd - colStart + 1) + colStart;
-                    int idx = index1*19+index2;
+                    idx1 = rand.nextInt(rowEnd - rowStart + 1) + rowStart;
+                    idx2 = rand.nextInt(colEnd - colStart + 1) + colStart;
+                    int idx = idx1*19+idx2;
                     if (this.board.get(idx) == PieceColor.EMPTY) {
                         found = true;
-                        idx1 = index1;
-                        idx2 = index2;
+                        index1 = idx;
+                        System.out.println(this.name());
                         System.out.println("First position : " + "( "+idx1 +","+ idx2+" );");
                         break;
                     }
@@ -55,30 +55,41 @@ public class AI extends core.player.AI {
                     // Found an empty space in the center region
                     found = false;
                     while (!found && consecutiveMisses < 10) {
-                        List<Integer> adjIndices = getAdjacentIndices(idx1, idx2);
-                        int[] neighbors = new int[adjIndices.size()];
-                        for (int i = 0; i < adjIndices.size(); i++) {
-                            neighbors[i] = adjIndices.get(i);
-                        }
-                        int randIdx = rand.nextInt(neighbors.length);
-                        int neighbor = neighbors[randIdx];
-                        if (this.board.get(neighbor) == PieceColor.EMPTY) {
+                        idx1 = rand.nextInt(rowEnd - rowStart + 1) + rowStart;
+                        idx2 = rand.nextInt(colEnd - colStart + 1) + colStart;
+                        int idx = idx1*19+idx2;
+
+                        if (this.board.get(idx) == PieceColor.EMPTY) {
                             found = true;
-                            index2 = neighbor;
+                            index2 = idx;
+                            System.out.println("Second position : " + "( "+idx1 +","+ idx2+" );");
                             break;
                         }
                         consecutiveMisses++;
-                        if (randIdx == neighbors.length - 1) {
-                            // If all adjacent spaces are occupied, break and try again
-                            break;
-                        }
+//                        List<Integer> adjIndices = getAdjacentIndices(idx1, idx2);
+//                        int[] neighbors = new int[adjIndices.size()];
+//                        for (int i = 0; i < adjIndices.size(); i++) {
+//                            neighbors[i] = adjIndices.get(i);
+//                        }
+//                        int randIdx = rand.nextInt(neighbors.length);
+//                        int neighbor = neighbors[randIdx];
+//                        if (this.board.get(neighbor) == PieceColor.EMPTY) {
+//                            found = true;
+//                            index2 = neighbor;
+//                            break;
+//                        }
+//                        consecutiveMisses++;
+//                        if (randIdx == neighbors.length - 1) {
+//                            // If all adjacent spaces are occupied, break and try again
+//                            break;
+//                        }
                     }
                     if (!found) {
                         continue;
                     }
                 }
             }
-            //System.out.println("Final position : " + "( "+index1 +","+ index2+" );");
+            System.out.println("Final two position : " + "( "+index1 +","+ index2+" );");
             Move move = new Move(index1, index2);
             this.board.makeMove(move);
             return move;

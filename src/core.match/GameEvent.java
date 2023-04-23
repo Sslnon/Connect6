@@ -85,8 +85,13 @@ public class GameEvent {
     }
 
     public void runSingleThread(ArrayList<Game> games) {
-        for (Game game : games)
+        for (Game game : games) {
+            int i =0;
+
+            System.out.println(i+"次 ： ");
+            i++;
             game.run();
+        }
     }
 
     /**

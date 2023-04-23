@@ -61,6 +61,7 @@ public class AI extends core.player.AI {
 //                return move;
 //            }
 //        }
+        System.out.println(this.name());
         Move move = new Move(index1, index2);
         this.board.makeMove(move);
         steps++;
