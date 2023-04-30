@@ -29,6 +29,7 @@ public class AI extends core.player.AI {
                 System.out.println(this.name());
                 return move;
             }
+            
         }
     }
 

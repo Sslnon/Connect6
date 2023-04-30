@@ -160,10 +160,10 @@ public class GameEvent {
 
     public static void main(String[] args) {
         GameEvent event = new GameEvent("Report01");
-        event.addPlayer(new g02.AI());
+        event.addPlayer(new gBronia.AI());
         event.addPlayer(new g04.AI());
         event.addPlayer(new g03.AI());
-        event.arrangeMatches(500);
+        event.arrangeMatches(100);
         event.runSingleThread();
         event.showResults();
         event.showStatistics();
