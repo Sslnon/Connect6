@@ -45,8 +45,8 @@ public class AI extends core.player.AI {
                     if (this.board.get(idx) == PieceColor.EMPTY) {
                         found = true;
                         index1 = idx;
-                        System.out.println(this.name());
-                        System.out.println("First position : " + "( "+idx1 +","+ idx2+" );");
+//                        System.out.println(this.name());
+//                        System.out.println("First position : " + "( "+idx1 +","+ idx2+" );");
                         break;
                     }
                     consecutiveMisses++;
@@ -62,34 +62,17 @@ public class AI extends core.player.AI {
                         if (this.board.get(idx) == PieceColor.EMPTY) {
                             found = true;
                             index2 = idx;
-                            System.out.println("Second position : " + "( "+idx1 +","+ idx2+" );");
+//                            System.out.println("Second position : " + "( "+idx1 +","+ idx2+" );");
                             break;
                         }
                         consecutiveMisses++;
-//                        List<Integer> adjIndices = getAdjacentIndices(idx1, idx2);
-//                        int[] neighbors = new int[adjIndices.size()];
-//                        for (int i = 0; i < adjIndices.size(); i++) {
-//                            neighbors[i] = adjIndices.get(i);
-//                        }
-//                        int randIdx = rand.nextInt(neighbors.length);
-//                        int neighbor = neighbors[randIdx];
-//                        if (this.board.get(neighbor) == PieceColor.EMPTY) {
-//                            found = true;
-//                            index2 = neighbor;
-//                            break;
-//                        }
-//                        consecutiveMisses++;
-//                        if (randIdx == neighbors.length - 1) {
-//                            // If all adjacent spaces are occupied, break and try again
-//                            break;
-//                        }
                     }
                     if (!found) {
                         continue;
                     }
                 }
             }
-            System.out.println("Final two position : " + "( "+index1 +","+ index2+" );");
+//            System.out.println("Final two position : " + "( "+index1 +","+ index2+" );");
             Move move = new Move(index1, index2);
             this.board.makeMove(move);
             return move;

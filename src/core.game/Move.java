@@ -44,6 +44,12 @@ public class Move {
         return k;
     }
 
+    public static int intIndex(int c, int r) {
+        int k = c * STEP_C + r * STEP_R + INDEX_ORIGIN;
+        assert 0 <= k && k <= MAX_INDEX;
+        return k;
+    }
+
     /** Return the column letter of linearized index K. */
     public static char col(int k) {
         return (char) (k % STEP_R + 'A');
