@@ -130,7 +130,7 @@ public class AI extends core.player.AI {
 //            System.out.println("unexpected position=-1 error //TODO");
 //            return null;
 //        }
-        System.out.println(maxPosition+"???"+secPosition);
+//        System.out.println(maxPosition+"???"+secPosition);
         if (maxPosition != secPosition) {
             Move move = new Move(maxPosition, secPosition);
             this.board.makeMove(move);
@@ -220,9 +220,9 @@ public class AI extends core.player.AI {
         }
         for(int j=start;j<=end;j++){
             index = intIndex(j,x);
-            if(this.board.get(index)!=PieceColor.WHITE)
+            if(this.board.get(index)==PieceColor.WHITE)
                 s.append('1');
-            else if(this.board.get(index)!=PieceColor.BLACK)
+            else if(this.board.get(index)==PieceColor.BLACK)
                 s.append('2');
             else
                 s.append('0');
@@ -273,9 +273,9 @@ public class AI extends core.player.AI {
 
         for(int i=start;i<=end;i++){
             index = intIndex(y,i);
-            if(this.board.get(index)!=PieceColor.WHITE)
+            if(this.board.get(index)==PieceColor.WHITE)
                 s.append('1');
-            else if(this.board.get(index)!=PieceColor.BLACK)
+            else if(this.board.get(index)==PieceColor.BLACK)
                 s.append('2');
             else
                 s.append('0');
@@ -340,9 +340,9 @@ public class AI extends core.player.AI {
         }
         for(int i=start_x,j=start_y;i>=end_x&&j<=end_y;--i,++j){
             index = intIndex(j,i);
-            if(this.board.get(index)!=PieceColor.WHITE)
+            if(this.board.get(index)==PieceColor.WHITE)
                 s.append('1');
-            else if(this.board.get(index)!=PieceColor.BLACK)
+            else if(this.board.get(index)==PieceColor.BLACK)
                 s.append('2');
             else
                 s.append('0');
@@ -407,9 +407,9 @@ public class AI extends core.player.AI {
         }
         for(int i=start_x,j=start_y;i<=end_x&&j<=end_y;i++,++j){
             index = intIndex(j,i);
-            if(this.board.get(index)!=PieceColor.WHITE)
+            if(this.board.get(index)==PieceColor.WHITE)
                 s.append('1');
-            else if(this.board.get(index)!=PieceColor.BLACK)
+            else if(this.board.get(index)==PieceColor.BLACK)
                 s.append('2');
             else
                 s.append('0');
@@ -428,7 +428,7 @@ public class AI extends core.player.AI {
 
     private long singleValue(String str,PieceColor mainChessColor){
         PieceColor otherChessColor= ((mainChessColor==PieceColor.WHITE)?PieceColor.BLACK:PieceColor.WHITE);
-        return singleValue(str,0,mainChessColor)-(long)(1.1*singleValue(str,0,otherChessColor));
+        return singleValue(str,0,mainChessColor)-(long)(singleValue(str,0,otherChessColor));
     }
     private long singleValue(String str, int valuestart, PieceColor mainChessColor){
         if(str.length()<6)
