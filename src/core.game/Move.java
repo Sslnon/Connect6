@@ -44,6 +44,7 @@ public class Move {
         return k;
     }
 
+
     /** Return the column letter of linearized index K. */
     public static char col(int k) {
         return (char) (k % STEP_R + 'A');
